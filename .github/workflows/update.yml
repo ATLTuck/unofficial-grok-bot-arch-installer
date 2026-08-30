@@ -1,0 +1,43 @@
+name: Check for new Grok Bot release
+
+on:
+  schedule:
+    - cron: "42 7 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Bump PKGBUILD when Cursor publishes a new Linux build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! bash scripts/bump.sh; then
+            echo "::error::bump.sh failed"
+            exit 1
+          fi
+          if git diff --quiet -- PKGBUILD .SRCINFO; then
+            echo "PKGBUILD already matches the latest feed."
+            exit 0
+          fi
+          version=$(sed -n 's/^pkgver=//p' PKGBUILD | head -n1)
+          git add PKGBUILD .SRCINFO
+          git commit -m "grok-bot-bin ${version}"
+          git tag "v${version}"
+          git push origin "v${version}" HEAD:main
+          # Tag pushes that use GITHUB_TOKEN do not start other workflows.
+          gh workflow run build.yml --ref "v${version}"
