@@ -1,6 +1,6 @@
 pkgbase = grok-bot-bin
 	pkgdesc = Grok Bot desktop agent (unofficial Arch package of the official Linux .deb)
-	pkgver = 0.66.0
+	pkgver = 0.68.1
 	pkgrel = 1
 	url = https://github.com/ATLTuck/unofficial-grok-bot-arch-installer
 	arch = x86_64
@@ -20,7 +20,7 @@ pkgbase = grok-bot-bin
 	noextract = grok-bot_0.30.0_amd64.deb
 	options = !debug
 	options = !strip
-	source = https://downloads.cursor.com/grokbot/stable/12fb477da4023dc110998df181ec150d29c355f2/linux/x64/grok-bot_0.66.0_amd64.deb
-	sha256sums = 7d560a30a1e46a795cef70491d8b2e2e8b9178e7a5a074ffd76dc6184fd03709
+	source = https://downloads.cursor.com/grokbot/stable/33103062f95061ccf9c81c5b365d37ab152c3b66/linux/x64/grok-bot_0.68.1_amd64.deb
+	sha256sums = b2be8106d2b3eae07d983d5f1ca77b657accde666dc440db2a409421ecff3359
 
 pkgname = grok-bot-bin
