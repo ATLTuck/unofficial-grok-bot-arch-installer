@@ -7,8 +7,8 @@
 # Deb URL: https://downloads.cursor.com/grokbot/stable/<commit>/linux/x64/grok-bot_<version>_amd64.deb
 
 pkgname=grok-bot-bin
-pkgver=0.78.1
-_commit=72e130b4e6be3fdc47b97e809b6b420908ce2dd8
+pkgver=0.78.3
+_commit=cfe24863e71ea2a370145dff5e87ad8dba8e8ccb
 pkgrel=1
 pkgdesc="Grok Bot desktop agent (unofficial Arch package of the official Linux .deb)"
 arch=('x86_64')
@@ -31,7 +31,7 @@ conflicts=('grok-bot')
 source=("https://downloads.cursor.com/grokbot/stable/${_commit}/linux/x64/grok-bot_${pkgver}_amd64.deb")
 noextract=("grok-bot_${pkgver}_amd64.deb")
 options=('!debug' '!strip')
-sha256sums=('55d2a34cfff762342251ffa9b1321a70f08b603f227f886e18b2c1c5e73ded1d')
+sha256sums=('dc1c835c6d35082e61995784b75fc4be2fdfb8675d83d966ddc3929ceb90e8e5')
 
 package() {
   bsdtar -xOf "${srcdir}/grok-bot_${pkgver}_amd64.deb" data.tar.xz \
